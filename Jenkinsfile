@@ -6,28 +6,29 @@ pipeline {
         jdk "JDK17"
     }
     stages {
-        stage("fetch")//fetch the code from git hub.
+        stage("fetch"){//fetch the code from git hub.
             steps{
                 git branch: 'atom' , url: 'https://github.com/arul2589/allvprofile.git'
             }        
-    }
-    stages {
-        stage("test")//testing the pakage.
+    
+        }    
+        stage("test"){//testing the pakage.
             steps{
                 sh 'mvn test'
             }        
-    }
-    stages {
-        stage("Build")//creating the target file
-            steps{
-                sh 'mvn install -Dskiptest'
+        }
+    
+        stage("Build"){//creating the target file
+            steps {
+                sh 'mvn install -DskipTests'
             }
             post {
-                success{
+                success {
                     //creating the target file
                     echo "Archiving artifact"
                     archiveArtifacts artifacts: '**/*.war'
                 }
-            }    
+            }
+        }    
     }
 }
