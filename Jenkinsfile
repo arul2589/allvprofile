@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    tool{
+    tools{
         // tools which is instaled in jenkise tool config.
         maven "Maven3.9"
         jdk "JDK17"
